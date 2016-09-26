@@ -5,7 +5,7 @@ describe Deposit do
   let(:bank_account) { BankAccount.new }
 
   it 'takes the current date in DD/MM/YYYY format' do
-    expect(deposit.date).to eq '21/09/2016'
+    expect(deposit.date).to eq "#{Time.now.strftime("%d/%m/%Y")}"
   end
 
   it 'increases the balance by the deposited amount' do

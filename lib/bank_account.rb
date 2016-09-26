@@ -20,8 +20,13 @@ class BankAccount
   end
 
   def print_statement
-    puts "date || credit || debit || balance"
-    @statements.reverse!.each { |statement| p statement }
+    printed_statement = ''
+    printed_statement << "date || credit || debit || balance"
+    @statements.reverse!.each { |statement| printed_statement << statement }
+    printed_statement
   end
+
+  # puts "date || credit || debit || balance"
+  # @statements.reverse!.each { |statement| printed_statement << statement }
 
 end

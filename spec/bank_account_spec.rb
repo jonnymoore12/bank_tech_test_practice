@@ -16,7 +16,7 @@ describe BankAccount do
 
   describe '#deposit' do
     it 'deposits an amount of money and adds it to the balance' do
-      expect {subject.deposit(20.00) }.to change { subject.balance }.by 20.00
+      expect { subject.deposit(20.00) }.to change { subject.balance }.by 20.00
     end
 
     it 'adds a record of the deposit to the statements' do
@@ -39,7 +39,7 @@ describe BankAccount do
   end
 
   describe '#print_statement' do
-    xit 'returns an account statement with correctly formatted row headers' do
+    it 'returns an account statement with correctly formatted row headers' do
       expect(subject.print_statement).to include "date || credit || debit || balance"
     end
 

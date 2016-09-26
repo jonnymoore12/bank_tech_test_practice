@@ -4,7 +4,7 @@ describe Withdrawal do
   let(:withdrawal) { Withdrawal.new(20, 10) }
 
   it 'takes the current date in DD/MM/YYYY format' do
-    expect(withdrawal.date).to eq '21/09/2016'
+    expect(withdrawal.date).to eq "#{Time.now.strftime("%d/%m/%Y")}"
   end
 
   it 'decreases the balance by the deposited amount' do
