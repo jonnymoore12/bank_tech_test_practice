@@ -10,19 +10,15 @@ describe BankAccount do
     expect(account.balance).to eq 10
   end
 
-  it 'is initialized with an empty record of statements' do
-    expect(subject.statements).to eq []
-  end
-
   describe '#deposit' do
     it 'deposits an amount of money and adds it to the balance' do
       expect { subject.deposit(20.00) }.to change { subject.balance }.by 20.00
     end
 
-    it 'adds a record of the deposit to the statements' do
+    it 'adds a record of the deposit to the transactions in statement' do
       account = BankAccount.new(10)
       account.deposit(20)
-      expect(account.statements).to include "#{Time.now.strftime("%d/%m/%Y")} || 20 || || 30"
+      expect(account.statement.transactions).to include "#{Time.now.strftime("%d/%m/%Y")} || 20 || || 30"
     end
   end
 
@@ -34,26 +30,7 @@ describe BankAccount do
     it 'adds a record of the withdrawals to the statements' do
       account = BankAccount.new(10)
       account.withdraw(20)
-      expect(account.statements).to include "#{Time.now.strftime("%d/%m/%Y")} || || 20 || -10"
-    end
-  end
-
-  describe '#print_statement' do
-    it 'returns an account statement with correctly formatted row headers' do
-      expect(subject.print_statement).to include "date || credit || debit || balance"
-    end
-
-    it 'also returns historical record of deposits' do
-      account = BankAccount.new
-      account.deposit(40)
-      expect(account.print_statement).to include "#{Time.now.strftime("%d/%m/%Y")} || 40 || || 40"
-    end
-
-    it 'also returns historical record of withdrawals' do
-      account = BankAccount.new
-      account.deposit(40)
-      account.withdraw(40)
-      expect(account.print_statement).to include "#{Time.now.strftime("%d/%m/%Y")} || || 40 || 0"
+      expect(account.statement.transactions).to include "#{Time.now.strftime("%d/%m/%Y")} || || 20 || -10"
     end
   end
 
