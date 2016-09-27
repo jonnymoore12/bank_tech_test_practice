@@ -4,9 +4,9 @@ class BankAccount
 
   attr_reader :balance, :statement
 
-  def initialize(starting_amount = 0)
+  def initialize(starting_amount = 0, statement)
     @balance = starting_amount
-    @statement = Statement.new
+    @statement = statement
   end
 
   def deposit(amount)
